@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: metric-server
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/metric
+    username: postgres
+    password: Metric1234
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      # update: створює/оновлює таблиці автоматично (добре для розробки)
+      # validate: лише перевіряє схему (рекомендовано для продакшну)
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+mqtt:
+  client-id: metric-db
+  host-name: a3qlrcavgmj00y-ats.iot.eu-central-1.amazonaws.com
+  certificate-path: /Users/andrii/IdeaProjects/metric-server/src/main/resources/metricServer.cert.pem
+  private-key-path: /Users/andrii/IdeaProjects/metric-server/src/main/resources/metricServer.private.key
