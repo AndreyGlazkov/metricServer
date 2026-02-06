@@ -20,6 +20,10 @@ configurations {
 	}
 }
 
+bootJar {
+    mainClass = 'home.hlazkov.metric_server.MetricServerApplication'
+}
+
 repositories {
 	mavenCentral()
 }
