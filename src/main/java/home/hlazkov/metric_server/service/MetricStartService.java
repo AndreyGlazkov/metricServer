@@ -8,8 +8,6 @@ import software.amazon.awssdk.crt.mqtt5.Mqtt5Client;
 import software.amazon.awssdk.crt.mqtt5.QOS;
 import software.amazon.awssdk.crt.mqtt5.packets.SubscribePacket;
 
-import java.time.Duration;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor

@@ -3,7 +3,7 @@ spring:
     name: metric-server
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/metric
+    url: jdbc:postgresql://database-metric.cdjnxpoznoqv.eu-central-1.rds.amazonaws.com:5432/postgres
     username: postgres
     password: Metric1234
     driver-class-name: org.postgresql.Driver
@@ -22,5 +22,5 @@ spring:
 mqtt:
   client-id: metric-db
   host-name: a3qlrcavgmj00y-ats.iot.eu-central-1.amazonaws.com
-  certificate-path: /Users/andrii/Documents/metric/certs/metricServer.cert.pem
-  private-key-path: /Users/andrii/Documents/metric/certs/metricServer.private.key
+  certificate-path: /certs/metricServer.cert.pem
+  private-key-path: /certs/metricServer.private.key

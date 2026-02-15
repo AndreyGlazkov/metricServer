@@ -26,8 +26,12 @@ public class MetricPublishEvents implements Mqtt5ClientOptions.PublishEvents {
                 ? ""
                 : new String(publish.getPayload(), StandardCharsets.UTF_8);
 
-        var metricData = mapper.map(payload);
-        log.info("Received: {}", metricData);
-        metricService.saveMetricData(metricData);
+        try {
+            var metricData = mapper.map(payload);
+            log.info("Received: {}", metricData);
+            metricService.saveMetricData(metricData);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
     }
 }

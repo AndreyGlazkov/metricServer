@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Metrics</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script type="text/javascript" th:inline="javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChartTemp);
+
+            function drawChartTemp() {
+                var data = google.visualization.arrayToDataTable([[${chartData}]]);
+
+                var options = {
+                    title: 'Temperature & Humidity',
+                    curveType: 'function',
+                    legend: { position: 'bottom' }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                chart.draw(data, options);
+            }
+        </script>
+    </head>
+    <body>
+      <div class="container">
+        <div id="curve_chart" style="width: 100%; height: 500px"></div>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Type</td>
+                        <td>Value</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="metric : ${metrics}">
+                    <td th:text="${metric.type}">type</td>
+                    <td th:text="${metric.value}">value</td>
+                    <td th:text="${metric.createDate}">createDate</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </body>
+</html>
