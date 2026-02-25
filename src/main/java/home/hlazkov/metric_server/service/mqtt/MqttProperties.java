@@ -12,4 +12,11 @@ public class MqttProperties {
     private String hostName;
     private String certificatePath;
     private String privateKeyPath;
+    private MqttSubscribeProperties subscribe;
+
+    @Data
+    static public class MqttSubscribeProperties {
+        private Boolean enable = true;
+        private String topic;
+    }
 }

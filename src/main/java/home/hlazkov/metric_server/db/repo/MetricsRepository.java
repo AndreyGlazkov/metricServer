@@ -13,4 +13,7 @@ public interface MetricsRepository extends JpaRepository<Metric, Long> {
 
     @Query(value = "select m from Metric m where m.createDate between :fromDate and :toDate")
     List<Metric> findByCreateDate(LocalDateTime fromDate, LocalDateTime toDate);
+
+    @Query(value = "select m from Metric m order by m.createDate desc limit :count")
+    List<Metric> findLast(Integer count);
 }

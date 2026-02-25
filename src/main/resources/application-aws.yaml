@@ -1,4 +1,6 @@
 spring:
+  flax:
+    port: 80
   application:
     name: metric-server
 

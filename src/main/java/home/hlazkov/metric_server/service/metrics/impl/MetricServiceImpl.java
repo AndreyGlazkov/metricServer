@@ -46,7 +46,7 @@ public class MetricServiceImpl implements MetricService {
 
     @Override
     public List<MetricDto> findLast(Integer count) {
-        return List.of();
+        return mapper.toDtoList(repository.findLast(count));
     }
 
     @Override

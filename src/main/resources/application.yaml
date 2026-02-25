@@ -3,9 +3,9 @@ spring:
     name: metric-server
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/metric
-    username: postgres
-    password: Metric1234
+    url:
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -20,7 +20,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
 mqtt:
-  client-id: metric-db
-  host-name: a3qlrcavgmj00y-ats.iot.eu-central-1.amazonaws.com
-  certificate-path: /Users/andrii/Documents/metric/certs/metricServer.cert.pem
-  private-key-path: /Users/andrii/Documents/metric/certs/metricServer.private.key
+  client-id:
+  host-name:
+  certificate-path:
+  private-key-path:
+  subscribe:
+    topic:

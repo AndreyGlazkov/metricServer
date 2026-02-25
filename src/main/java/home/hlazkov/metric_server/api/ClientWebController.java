@@ -7,14 +7,13 @@ import home.hlazkov.metric_server.service.metrics.MetricService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import reactor.core.publisher.Mono;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,14 +23,22 @@ public class ClientWebController {
 
     private final MetricService metricService;
 
+    @GetMapping("/login")
+    public String login() {
+        return "index";
+    }
+
     @GetMapping("/")
     public String index(Model model) {
+        var metrics = metricService.findLast(10);
+        model.addAttribute("metrics", metrics);
+        model.addAttribute("chartData", convertToChartTemp(metrics));
         model.addAttribute("period", new PeriodRequest());
         return "index";
     }
 
     @PostMapping("/metrics")
-    public String getMetrics(final Model model, @ModelAttribute("period") PeriodRequest period) {
+    public String getMetrics(final Model model, @ModelAttribute("period") @Validated PeriodRequest period) {
         var metrics = metricService.findByDateTime(period.getFromDate(), period.getToDate());
         model.addAttribute("metrics", metrics);
         model.addAttribute("chartData", convertToChartTemp(metrics));
